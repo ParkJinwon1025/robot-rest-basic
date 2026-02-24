@@ -14,6 +14,7 @@ public class Hello {
     @Id
     @GeneratedValue
     private Long id;
+    private String name;
     private String message;
     private String email;
 
