@@ -132,6 +132,7 @@ docker-compose down
 4. Username: `지정한 username`
 5. Password : `Docker Container`에서 지정한 비밀번호
 
+6. JDBC 버튼 클릭 후 `encrypt / false` `trustServerCertificate / true` 추가
 ![MSSQL 이미지](./images/MSSQL.png)
 
 ---
