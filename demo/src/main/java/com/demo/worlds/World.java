@@ -13,5 +13,6 @@ public class World {
     @GeneratedValue
     private Long id;
     private String name;
+    private String phoneNumber;
 
 }

@@ -249,3 +249,7 @@ docker-compose down
 ```
 
 3. `pom.xml` 우클릭 후 `Reload Projects` 클릭
+
+
+## 6. **Java Test Code **
+- `test/java/resource/application.properties`의 설정 확인
