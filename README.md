@@ -147,3 +147,105 @@ docker-compose down
 ![MSSQL 이미지](./images/MariaDB.png)
 
 ---
+
+## 5. **GitHub Packages**에서 라이브러리 가져오기
+
+1. `C:\Users\USER\.m2` 경로에 `setting.xml` 파일 생성 및 패키지 추가
+- 정확한 건 [GitHub Apache Maven DOCS](https://docs.github.com/ko/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry) 참조(하단은 예시입니다.)
+- 개인 패키지가 있으니 보안에 주의
+``` xml
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <activeProfiles>
+    <activeProfile>github</activeProfile>
+  </activeProfiles>
+
+  <profiles>
+    <profile>
+      <id>github</id>
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+
+        <!-- 라이브러리 추가 예시 -->
+        <repository>
+          <id>github</id>
+          <url>https://maven.pkg.github.com/${OWNER}/${REPOSITORY}</url>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+        <repository>
+          <id>github</id>
+          <url>https://maven.pkg.github.com/u2waremanager/io.u2ware.common.data</url>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+        <repository>
+          <id>github</id>
+          <url>https://maven.pkg.github.com/u2waremanager/io.u2ware.common.stomp</url>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+        <repository>
+          <id>github</id>
+          <url>https://maven.pkg.github.com/u2waremanager/io.u2ware.common.oauth2</url>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+        <repository>
+          <id>github</id>
+          <url>https://maven.pkg.github.com/u2waremanager/io.u2ware.common.docs</url>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+
+  <servers>
+    <server>
+      <id>github</id>
+      <username>${Github Username}$</username>
+      <password>${personal access token}</password>
+    </server>
+  </servers>
+</settings>
+
+```
+
+2. `pom.xml`에 해당 라이브러리에 대한 **패키지 종속성** 추가
+```xml
+	<dependency>
+        <groupId>io.u2ware.common</groupId>
+        <artifactId>u2ware-common-data</artifactId>
+        <version>3.4.13</version>
+    </dependency>
+    <dependency>
+        <groupId>io.u2ware.common</groupId>
+        <artifactId>u2ware-common-oauth2</artifactId>
+        <version>3.4.13</version>
+    </dependency>
+    <dependency>
+        <groupId>io.u2ware.common</groupId>
+        <artifactId>u2ware-common-stomp</artifactId>
+        <version>3.4.13</version>
+    </dependency>
+    <dependency>
+        <groupId>io.u2ware.common</groupId>
+        <artifactId>u2ware-common-docs</artifactId>
+        <version>3.4.13</version>
+    </dependency>   
+
+```
+
+3. `pom.xml` 우클릭 후 `Reload Projects` 클릭
