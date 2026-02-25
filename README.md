@@ -6,6 +6,7 @@
 2. [**Maven 프로젝트 + Docker 컨테이너 실행**](#2-maven-프로젝트--docker-컨테이너-실행)
 3. [**Maven 프로젝트 + Docker 컨테이너 종료**](#3-maven-프로젝트--docker-컨테이너-종료docker-composeyml-사용하는-경우)
 4. [**VSCode Database확장으로 DB 연결하기**](#4-vscode-database확장으로-db-연결하기)
+5. [**Java Test Code**](#5-java-test-code)
 
 ---
 
@@ -148,7 +149,7 @@ docker-compose down
 
 ---
 
-## 5. **GitHub Packages**에서 라이브러리 가져오기
+## 4. **GitHub Packages**에서 라이브러리 가져오기
 
 1. `C:\Users\USER\.m2` 경로에 `setting.xml` 파일 생성 및 패키지 추가
 - 정확한 건 [GitHub Apache Maven DOCS](https://docs.github.com/ko/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry) 참조(하단은 예시입니다.)
@@ -250,6 +251,7 @@ docker-compose down
 
 3. `pom.xml` 우클릭 후 `Reload Projects` 클릭
 
+---
 
-## 6. **Java Test Code **
+## 5. **Java Test Code**
 - `test/java/resource/application.properties`의 설정 확인
