@@ -1,8 +1,9 @@
-package com.demo.worlds;
+package com.demo.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 @Data
@@ -14,5 +15,8 @@ public class World {
     private Long id;
     private String name;
     private String phoneNumber;
+
+    @ManyToOne
+    private Hello hello;
 
 }
