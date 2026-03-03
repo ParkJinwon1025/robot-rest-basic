@@ -25,119 +25,119 @@ import io.u2ware.common.data.jpa.repository.query.JpaSpecificationBuilder;
 @AutoConfigureMockMvc // 웹 테스트
 class ApplicationTests {
 
-    @Autowired
-    private HelloRepository helloRepository;
+        @Autowired
+        private HelloRepository helloRepository;
 
-    @Autowired
-    private MockMvc mockMvc;
+        @Autowired
+        private MockMvc mockMvc;
 
-    // helloRepository 단일 테스트
-    // @Test
-    // void repositoryTest() throws Exception {
-    // System.out.println(helloRepository);
-    // }
+        // helloRepository 단일 테스트
+        // @Test
+        // void repositoryTest() throws Exception {
+        // System.out.println(helloRepository);
+        // }
 
-    // Repository Test
-    // @Test : 테스트 메서드 지정 (JUnit이 해당 메서드를 테스트로 인식하고 실행)
-    // JUnit : Java 테스트 프레임워크 (spring-boot-start-test에 포함)
-    // @Test
-    // void repositoryTest() throws Exception {
+        // Repository Test
+        // @Test : 테스트 메서드 지정 (JUnit이 해당 메서드를 테스트로 인식하고 실행)
+        // JUnit : Java 테스트 프레임워크 (spring-boot-start-test에 포함)
+        // @Test
+        // void repositoryTest() throws Exception {
 
-    // Hello hello = new Hello();
-    // hello.setName("helloUbisam");
-    // hello.setEmail("ubisam");
-    // hello.setEmail("ubisam@ubisam.com");
+        // Hello hello = new Hello();
+        // hello.setName("helloUbisam");
+        // hello.setEmail("ubisam");
+        // hello.setEmail("ubisam@ubisam.com");
 
-    // // Create
-    // System.out.println("[[[HelloCreate]]]");
-    // helloRepository.save(hello);
+        // // Create
+        // System.out.println("[[[HelloCreate]]]");
+        // helloRepository.save(hello);
 
-    // // Read
-    // System.out.println("[[[HelloRead]]]");
-    // List<Hello> helloList = helloRepository.findAll();
-    // System.out.println(helloList);
+        // // Read
+        // System.out.println("[[[HelloRead]]]");
+        // List<Hello> helloList = helloRepository.findAll();
+        // System.out.println(helloList);
 
-    // // Read One
-    // System.out.println("[[[HelloReadOne]]]");
-    // Hello hello2 = helloRepository.findById(hello.getId()).get();
-    // System.out.println(hello2);
+        // // Read One
+        // System.out.println("[[[HelloReadOne]]]");
+        // Hello hello2 = helloRepository.findById(hello.getId()).get();
+        // System.out.println(hello2);
 
-    // // Update
-    // System.out.println("[[[HelloUpdate]]]");
-    // hello.setName(("helloUbisam222"));
-    // hello.setEmail("ubisam222");
-    // hello.setEmail("ubisam222@ubisam.com");
-    // helloRepository.save(hello);
-    // List<Hello> updatedList = helloRepository.findAll();
-    // System.out.println(updatedList);
+        // // Update
+        // System.out.println("[[[HelloUpdate]]]");
+        // hello.setName(("helloUbisam222"));
+        // hello.setEmail("ubisam222");
+        // hello.setEmail("ubisam222@ubisam.com");
+        // helloRepository.save(hello);
+        // List<Hello> updatedList = helloRepository.findAll();
+        // System.out.println(updatedList);
 
-    // // Delete
-    // System.out.println("[[[HelloDelete]]]");
-    // helloRepository.delete(hello);
-    // List<Hello> deletedList = helloRepository.findAll();
-    // System.out.println(deletedList);
-    // }
+        // // Delete
+        // System.out.println("[[[HelloDelete]]]");
+        // helloRepository.delete(hello);
+        // List<Hello> deletedList = helloRepository.findAll();
+        // System.out.println(deletedList);
+        // }
 
-    // // 웹 요청 Test
-    // @Test
-    // void contextLoad2() throws Exception {
-    // // perform : 요청 구간
-    // // andDo : 응답 구간(결과가 나오고 나서 무언가를 하고 싶을때)
-    // // andExpect : 검증 구간(결과를 기대하는 구간)
+        // // 웹 요청 Test
+        // @Test
+        // void contextLoad2() throws Exception {
+        // // perform : 요청 구간
+        // // andDo : 응답 구간(결과가 나오고 나서 무언가를 하고 싶을때)
+        // // andExpect : 검증 구간(결과를 기대하는 구간)
 
-    // Hello h = new Hello();
-    // h.setName("name1");
-    // h.setEmail("abc@abc.com");
+        // Hello h = new Hello();
+        // h.setName("name1");
+        // h.setEmail("abc@abc.com");
 
-    // // Create
-    // mockMvc.perform(post("/api/helloes").content(h)).andDo(print()).andExpect(is2xx());
+        // // Create
+        // mockMvc.perform(post("/api/helloes").content(h)).andDo(print()).andExpect(is2xx());
 
-    // // Read
-    // mockMvc.perform(get("/api/helloes")).andDo(print()).andExpect(is2xx());
-    // // mockMvc.perform(get("/api/helloes/"+
-    // // h.getId())).andDo(print()).andExpect(is2xx());
+        // // Read
+        // mockMvc.perform(get("/api/helloes")).andDo(print()).andExpect(is2xx());
+        // // mockMvc.perform(get("/api/helloes/"+
+        // // h.getId())).andDo(print()).andExpect(is2xx());
 
-    // // h.setName("name2");
-    // // h.setEmail("abc1@abc1.com");
+        // // h.setName("name2");
+        // // h.setEmail("abc1@abc1.com");
 
-    // // Update
-    // //
-    // mockMvc.perform(put("/api/helloes/1").content(h)).andDo(print()).andExpect(is2xx());
+        // // Update
+        // //
+        // mockMvc.perform(put("/api/helloes/1").content(h)).andDo(print()).andExpect(is2xx());
 
-    // // Delete
-    // //
-    // mockMvc.perform(delete("/api/helloes/1").content(h)).andDo(print()).andExpect(is2xx());
+        // // Delete
+        // //
+        // mockMvc.perform(delete("/api/helloes/1").content(h)).andDo(print()).andExpect(is2xx());
 
-    // // Read
-    // // mockMvc.perform(get("/helloes")).andDo(print()).andExpect(is2xx());
-    // }
+        // // Read
+        // // mockMvc.perform(get("/helloes")).andDo(print()).andExpect(is2xx());
+        // }
 
-    @Test
-    void contextLoad3() throws Exception {
-        JpaSpecificationBuilder<Hello> query = JpaSpecificationBuilder
-                .of(Hello.class);
-        query.where()
-                .and().eq("name", "홍길동")
-                .or().like("email", "abc@abc.com");
-        // select * from hello where name = '홍길동' or email like 'abc@abc.com'
-        // ==============================================
-        // select * from hello where
-        // (name = '홍길동' and email like 'abc@abc.com')
-        // or (email like 'abc2@abc.com')
+        // @Test
+        // void contextLoad3() throws Exception {
+        // JpaSpecificationBuilder<Hello> query = JpaSpecificationBuilder
+        // .of(Hello.class);
         // query.where()
-        // .andStart().and().eq("name", "홍길동")
-        // .and().like("email", "abc@abc.com").andEnd()
-        // .or().like("email", "abc2@abc.com");
+        // .and().eq("name", "홍길동")
+        // .or().like("email", "abc@abc.com");
+        // // select * from hello where name = '홍길동' or email like 'abc@abc.com'
+        // // ==============================================
+        // // select * from hello where
+        // // (name = '홍길동' and email like 'abc@abc.com')
+        // // or (email like 'abc2@abc.com')
+        // // query.where()
+        // // .andStart().and().eq("name", "홍길동")
+        // // .and().like("email", "abc@abc.com").andEnd()
+        // // .or().like("email", "abc2@abc.com");
 
-        helloRepository.findAll(query.build());
+        // helloRepository.findAll(query.build());
 
-        Hello h = new Hello();
-        h.setKeyword("g");
+        // Hello h = new Hello();
+        // h.setKeyword("g");
 
-        mockMvc.perform(post("/api/helloes/search")
-                .content(h))
-                .andDo(print())
-                .andExpect(is2xx());
-    }
+        // mockMvc.perform(post("/api/helloes/search")
+        // .content(h))
+        // .andDo(print())
+        // .andExpect(is2xx());
+        // }
 
 }

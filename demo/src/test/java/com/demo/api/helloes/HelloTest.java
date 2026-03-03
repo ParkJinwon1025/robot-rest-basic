@@ -1,9 +1,11 @@
 package com.demo.api.helloes;
 
+import static io.u2ware.common.docs.MockMvcRestDocs.delete;
 import static io.u2ware.common.docs.MockMvcRestDocs.get;
 import static io.u2ware.common.docs.MockMvcRestDocs.is2xx;
 import static io.u2ware.common.docs.MockMvcRestDocs.post;
 import static io.u2ware.common.docs.MockMvcRestDocs.print;
+import static io.u2ware.common.docs.MockMvcRestDocs.put;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,77 +26,52 @@ public class HelloTest {
     @Autowired
     private MockMvc mockMvc;
 
-    // @Test
-    // void contextLoads() throws Exception {
-    // System.out.println(helloRepository);
-    // }
+    @Test
+    void contextLoads() throws Exception {
+        System.out.println(helloRepository);
+    }
 
-    // Hello h = new Hello();
-    // h.setName("name1");
-    // h.setEmail("abc@abc.com");
-    // helloRepository.save(h);
-    // }
+    @Test
+    void contextLoads1() throws Exception {
 
-    // // 웹 요청 Test
-    // @Test
-    // void contextLoad2() throws Exception {
-    // // perform : 요청 구간
-    // // andDo : 응답 구간(결과가 나오고 나서 무언가를 하고 싶을때)
-    // // andExpect : 검증 구간(결과를 기대하는 구간)
+        Hello h = new Hello();
+        h.setName("name1");
+        h.setEmail("abc@abc.com");
+        helloRepository.save(h);
+    }
 
-    // Hello h = new Hello();
-    // h.setName("name1");
-    // h.setEmail("abc@abc.com");
+    // 웹 요청 Test
+    @Test
+    void contextLoad2() throws Exception {
+        // perform : 요청 구간
+        // andDo : 응답 구간(결과가 나오고 나서 무언가를 하고 싶을때)
+        // andExpect : 검증 구간(결과를 기대하는 구간)
 
-    // // Create
-    // mockMvc.perform(post("/api/helloes").content(h)).andDo(print()).andExpect(is2xx());
+        Hello h = new Hello();
+        h.setName("name1");
+        h.setEmail("abc@abc.com");
 
-    // // Read
-    // mockMvc.perform(get("/api/helloes")).andDo(print()).andExpect(is2xx());
-    // // mockMvc.perform(get("/api/helloes/"+
-    // // h.getId())).andDo(print()).andExpect(is2xx());
+        // Create
+        mockMvc.perform(post("/api/helloes").content(h)).andDo(print()).andExpect(is2xx());
 
-    // // h.setName("name2");
-    // // h.setEmail("abc1@abc1.com");
+        // Read
+        mockMvc.perform(get("/api/helloes")).andDo(print()).andExpect(is2xx());
+        // mockMvc.perform(get("/api/helloes/"+
+        // h.getId())).andDo(print()).andExpect(is2xx());
 
-    // // Update
-    // //
-    // mockMvc.perform(put("/helloes/1").content(h)).andDo(print()).andExpect(is2xx());
+        // h.setName("name2");
+        // h.setEmail("abc1@abc1.com");
 
-    // // Delete
-    // //
-    // mockMvc.perform(delete("/helloes/1").content(h)).andDo(print()).andExpect(is2xx());
+        // Update
+        //
+        mockMvc.perform(put("/helloes/1").content(h)).andDo(print()).andExpect(is2xx());
 
-    // // Read
-    // // mockMvc.perform(get("/helloes")).andDo(print()).andExpect(is2xx());
-    // }
+        // Delete
+        //
+        mockMvc.perform(delete("/helloes/1").content(h)).andDo(print()).andExpect(is2xx());
 
-    // @Test
-    // void contextLoad3() throws Exception {
-    // JpaSpecificationBuilder<Hello> query = JpaSpecificationBuilder
-    // .of(Hello.class);
-    // query.where()
-    // .and().eq("name", "홍길동")
-    // .or().like("email", "abc@abc.com");
-    // // select * from hello where name = '홍길동' or email like 'abc@abc.com'
-    // // ==============================================
-    // // select * from hello where
-    // // (name = '홍길동' and email like 'abc@abc.com')
-    // // or (email like 'abc2@abc.com')
-    // // query.where()
-    // // .andStart().and().eq("name", "홍길동")
-    // // .and().like("email", "abc@abc.com").andEnd()
-    // // .or().like("email", "abc2@abc.com");
-
-    // helloRepository.findAll(query.build());
-
-    // Hello h = new Hello();
-    // h.setKeyword("g");
-
-    // mockMvc.perform(post("/api/helloes/search")
-    // .content(h))
-    // .andDo(print())
-    // .andExpect(is2xx());
-    // }
+        // Read
+        // mockMvc.perform(get("/helloes")).andDo(print()).andExpect(is2xx());
+    }
 
 }

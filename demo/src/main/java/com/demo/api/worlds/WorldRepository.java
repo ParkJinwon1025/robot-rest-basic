@@ -1,9 +1,9 @@
 package com.demo.api.worlds;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.demo.domain.World;
 
-public interface WorldRepository extends JpaRepository<World, Long> {
+import io.u2ware.common.data.jpa.repository.RestfulJpaRepository;
+
+public interface WorldRepository extends RestfulJpaRepository<World, Long> {
 
 }
