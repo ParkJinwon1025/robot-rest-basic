@@ -3,7 +3,7 @@ package com.demo.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+// import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Transient;
 import lombok.Data;
 
@@ -17,8 +17,10 @@ public class World {
     private String name;
     private String phoneNumber;
 
-    @ManyToOne
-    private Hello hello;
+    private String email;
+    private String address;
+    // @ManyToOne
+    // private Hello hello;
 
     @Transient
     private String keyword;

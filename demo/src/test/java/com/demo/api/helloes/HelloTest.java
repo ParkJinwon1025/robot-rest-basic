@@ -15,8 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.demo.domain.Hello;
 
-import io.u2ware.common.data.jpa.repository.query.JpaSpecificationBuilder;
-
 @SpringBootTest
 @AutoConfigureMockMvc
 public class HelloTest {
@@ -64,11 +62,11 @@ public class HelloTest {
 
         // Update
         //
-        mockMvc.perform(put("/helloes/1").content(h)).andDo(print()).andExpect(is2xx());
+        mockMvc.perform(put("/api/helloes/1").content(h)).andDo(print()).andExpect(is2xx());
 
         // Delete
         //
-        mockMvc.perform(delete("/helloes/1").content(h)).andDo(print()).andExpect(is2xx());
+        mockMvc.perform(delete("/api/helloes/1").content(h)).andDo(print()).andExpect(is2xx());
 
         // Read
         // mockMvc.perform(get("/helloes")).andDo(print()).andExpect(is2xx());

@@ -3,7 +3,6 @@ package com.demo.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import lombok.Data;
@@ -24,9 +23,6 @@ public class Hello {
     // keyword는 DB에 저장되지 않는 필드
     @Transient
     private String keyword;
-
-    @ManyToOne
-    private Hello hello;
 
     // @Data
     // @Embeddable

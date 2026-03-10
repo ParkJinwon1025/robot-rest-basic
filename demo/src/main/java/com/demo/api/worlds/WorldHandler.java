@@ -18,8 +18,16 @@ public class WorldHandler {
         System.out.println("[beforeSearch] testtesttesttesttesttesttesttest");
 
         JpaSpecificationBuilder<World> query = JpaSpecificationBuilder.of(World.class);
+
+        // query.where()
+        // .and().like("name", world.getKeyword()).build(spec);
+        // // .and().eq("name", world.getKeyword()).build(spec);
+
+        // query.where()
+        // .and().like("name", world.getKeyword()).build(spec);
+
         query.where()
-                .and().eq("name", world.getKeyword()).build(spec);
+                .and().like("name", world.getKeyword()).build(spec);
 
     }
 
