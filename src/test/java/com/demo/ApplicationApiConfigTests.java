@@ -2,14 +2,12 @@ package com.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static io.u2ware.common.docs.MockMvcRestDocs.get;
 import static io.u2ware.common.docs.MockMvcRestDocs.is2xx;
-import static io.u2ware.common.docs.MockMvcRestDocs.post;
 import static io.u2ware.common.docs.MockMvcRestDocs.print;
 
 @SpringBootTest
