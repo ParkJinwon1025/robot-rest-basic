@@ -19,7 +19,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.demo.domain.World;
+// import com.demo.domain.World;
 
 @SpringBootTest
 @AutoConfigureMockMvc
