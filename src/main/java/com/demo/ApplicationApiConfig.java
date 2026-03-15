@@ -26,7 +26,7 @@ public class ApplicationApiConfig implements RepositoryRestConfigurer {
         config.exposeIdsFor(Hello.class, World.class);
 
         // Post와 Put을 위한 Body를 리턴
-        // config.setReturnBodyForPutAndPost(true);
+        config.setReturnBodyForPutAndPost(true);
 
         // addMapping("/**") : 모든 URL 경로에 CORS 설정 적용
         // allowedOrigins("*") : 모든 출처(도메인)에서 오는 요청을 허용

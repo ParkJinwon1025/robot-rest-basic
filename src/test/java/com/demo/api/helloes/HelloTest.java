@@ -3,13 +3,16 @@ package com.demo.api.helloes;
 import static io.u2ware.common.docs.MockMvcRestDocs.delete;
 import static io.u2ware.common.docs.MockMvcRestDocs.get;
 import static io.u2ware.common.docs.MockMvcRestDocs.is2xx;
+import static io.u2ware.common.docs.MockMvcRestDocs.is4xx;
 import static io.u2ware.common.docs.MockMvcRestDocs.isJson;
 import static io.u2ware.common.docs.MockMvcRestDocs.post;
 import static io.u2ware.common.docs.MockMvcRestDocs.print;
 import static io.u2ware.common.docs.MockMvcRestDocs.put;
 import static io.u2ware.common.docs.MockMvcRestDocs.result;
+// import static io.u2ware.common.docs.MockMvcRestDocs.put;
 
-import java.util.function.BiConsumer;
+import java.util.Map;
+// import java.util.function.BiConsumer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,45 +20,26 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.demo.domain.Hello;
-
 @SpringBootTest
 @AutoConfigureMockMvc
 public class HelloTest {
-    @Autowired
-    private HelloRepository helloRepository;
 
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
-    void contextLoads() throws Exception {
-        System.out.println(helloRepository);
-    }
-
-    @Test
-    void contextLoads1() throws Exception {
-
-        Hello h = new Hello();
-        h.setName("name1");
-        h.setEmail("abc@abc.com");
-        helloRepository.save(h);
-    }
+    @Autowired
+    private HelloDocs helloDocs;
 
     // 웹 요청 Test
     @Test
-    void contextLoad2() throws Exception {
+    void contextLoad1() throws Exception {
         // perform : 요청 구간
         // andDo : 응답 구간(결과가 나오고 나서 무언가를 하고 싶을때)
         // andExpect : 검증 구간(결과를 기대하는 구간)
 
-        Hello h = new Hello();
-        h.setName("name1");
-        h.setEmail("abc@abc.com");
-
-        BiConsumer<String, String> key = (k, v) -> {
-            System.out.println(k + ":" + v);
-        };
+        // BiConsumer<String, String> key = (k, v) -> {
+        // System.out.println(k + ":" + v);
+        // };
 
         // BiConsumer로 아이디가 뭐로 들어오든 id를 캐치할 수 있음.(다음 단계로 진행 가능)
         // Create
@@ -63,32 +47,64 @@ public class HelloTest {
         // .andExpect(isJson("$.name", "test1"))
         // .andDo(result(docs::context, "a")); // a: log로 나오는 이름
 
-        // body에서 name을 읽어오기
-        // String name = docs.context("a","$.name");
+        // mockMvc.perform(get("/api/helloes")).andExpect(is4xx()).andDo(print()); //
+        // error
+        mockMvc
+                .perform(get("/api/helloes"))
+                .andExpect(is2xx())
+                .andDo(print());
 
-        // body에서 가져오기
-        // String url = docs.context("a", "$._links.self.href")
+        mockMvc
+                .perform(get("/api/helloes/search"))
+                .andExpect(is4xx())
+                .andDo(print());
+        mockMvc
+                .perform(post("/api/helloes/search"))
+                .andExpect(is4xx())
+                .andDo(print());
 
-        // mockMvc.perform(get(url)).andExpect(is2xx()).andDo(print())
+        // Create
+        mockMvc
+                .perform(post("/api/helloes")
+                        .content(helloDocs::newEnity, "김길동"))
+                .andDo(print())
+                .andExpect(is2xx())
+                .andDo(result(helloDocs::context, "entity1"));
+
         // Read
-        mockMvc.perform(get("/api/helloes")).andDo(print()).andExpect(is2xx());
-        // mockMvc.perform(get("/api/helloes/"+
-        // h.getId())).andDo(print()).andExpect(is2xx());
+        String url = helloDocs.context("entity1", "$._links.self.href");
+        System.out.println("url : " + url);
 
-        // h.setName("name2");
-        // h.setEmail("abc1@abc1.com");
+        mockMvc
+                .perform(get(url))
+                .andExpect(is2xx())
+                .andDo(print());
+        mockMvc
+                .perform(post(url))
+                .andExpect(is4xx())
+                .andDo(print());
+
+        Map<String, Object> entity = helloDocs.context("entity1", "$");
 
         // Update
-        // mocMvc.perform(put(url).).andExpect(is2xx()).andDo(print());
-        mockMvc.perform(put("/api/helloes/1").content(h)).andDo(print()).andExpect(is2xx());
+        mockMvc
+                .perform(put(url)
+                        .content(helloDocs::updateEntity, entity, "홍길동1234"))
+                .andExpect(is2xx())
+                .andDo(print())
+                .andExpect(isJson("$.name", "홍길동1234"));
 
         // Delete
-        //
-        mockMvc.perform(delete("/api/helloes/1").content(h)).andDo(print()).andExpect(is2xx());
+        mockMvc
+                .perform(delete(url))
+                .andExpect(is2xx())
+                .andDo(print());
 
-        // Read
-        // mockMvc.perform(get("/helloes")).andDo(print()).andExpect(is2xx());
-
+        // Read - 데이터가 없으므로 is4xx() 기대
+        mockMvc
+                .perform(get(url))
+                .andExpect(is4xx())
+                .andDo(print());
     }
 
 }
