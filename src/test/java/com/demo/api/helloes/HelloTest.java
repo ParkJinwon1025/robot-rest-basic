@@ -3,9 +3,13 @@ package com.demo.api.helloes;
 import static io.u2ware.common.docs.MockMvcRestDocs.delete;
 import static io.u2ware.common.docs.MockMvcRestDocs.get;
 import static io.u2ware.common.docs.MockMvcRestDocs.is2xx;
+import static io.u2ware.common.docs.MockMvcRestDocs.isJson;
 import static io.u2ware.common.docs.MockMvcRestDocs.post;
 import static io.u2ware.common.docs.MockMvcRestDocs.print;
 import static io.u2ware.common.docs.MockMvcRestDocs.put;
+import static io.u2ware.common.docs.MockMvcRestDocs.result;
+
+import java.util.function.BiConsumer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,9 +53,23 @@ public class HelloTest {
         h.setName("name1");
         h.setEmail("abc@abc.com");
 
-        // Create
-        mockMvc.perform(post("/api/helloes").content(h)).andDo(print()).andExpect(is2xx());
+        BiConsumer<String, String> key = (k, v) -> {
+            System.out.println(k + ":" + v);
+        };
 
+        // BiConsumer로 아이디가 뭐로 들어오든 id를 캐치할 수 있음.(다음 단계로 진행 가능)
+        // Create
+        // mockMvc.perform(post("/api/helloes").content(h)).andDo(print()).andExpect(is2xx())
+        // .andExpect(isJson("$.name", "test1"))
+        // .andDo(result(docs::context, "a")); // a: log로 나오는 이름
+
+        // body에서 name을 읽어오기
+        // String name = docs.context("a","$.name");
+
+        // body에서 가져오기
+        // String url = docs.context("a", "$._links.self.href")
+
+        // mockMvc.perform(get(url)).andExpect(is2xx()).andDo(print())
         // Read
         mockMvc.perform(get("/api/helloes")).andDo(print()).andExpect(is2xx());
         // mockMvc.perform(get("/api/helloes/"+
@@ -61,7 +79,7 @@ public class HelloTest {
         // h.setEmail("abc1@abc1.com");
 
         // Update
-        //
+        // mocMvc.perform(put(url).).andExpect(is2xx()).andDo(print());
         mockMvc.perform(put("/api/helloes/1").content(h)).andDo(print()).andExpect(is2xx());
 
         // Delete
@@ -70,6 +88,7 @@ public class HelloTest {
 
         // Read
         // mockMvc.perform(get("/helloes")).andDo(print()).andExpect(is2xx());
+
     }
 
 }

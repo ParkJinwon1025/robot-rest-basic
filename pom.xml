@@ -109,11 +109,18 @@
 			<artifactId>u2ware-common-oauth2</artifactId>
 			<version>3.5.11</version>
 		</dependency>
-        <dependency>
+
+		<!-- WebSocket -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>io.u2ware.common</groupId>
 			<artifactId>u2ware-common-stomp</artifactId>
 			<version>3.5.11</version>
 		</dependency>
+
 
 		
 		<!-- Test -->
