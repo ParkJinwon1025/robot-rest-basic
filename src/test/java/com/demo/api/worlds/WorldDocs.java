@@ -21,4 +21,16 @@ public class WorldDocs extends MockMvcRestDocs {
         return world;
     }
 
+    // Udpate
+    public Map<String, Object> updateEntityName(Map<String, Object> entity, String name) {
+        entity.put("name", name);
+        return entity;
+    }
+
+    public Map<String, Object> setKeyword(String keyword) {
+        Map<String, Object> world = new HashMap<>();
+        world.put("keyword", keyword);
+        return world;
+    }
+
 }

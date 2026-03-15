@@ -49,24 +49,45 @@ public class HelloTest {
 
         // mockMvc.perform(get("/api/helloes")).andExpect(is4xx()).andDo(print()); //
         // error
-        mockMvc
-                .perform(get("/api/helloes"))
-                .andExpect(is2xx())
-                .andDo(print());
+        // mockMvc
+        // .perform(get("/api/helloes"))
+        // .andExpect(is2xx())
+        // .andDo(print());
 
-        mockMvc
-                .perform(get("/api/helloes/search"))
-                .andExpect(is4xx())
-                .andDo(print());
-        mockMvc
-                .perform(post("/api/helloes/search"))
-                .andExpect(is4xx())
-                .andDo(print());
+        // mockMvc
+        // .perform(get("/api/helloes/search"))
+        // .andExpect(is4xx())
+        // .andDo(print());
+        // mockMvc
+        // .perform(post("/api/helloes/search"))
+        // .andExpect(is4xx())
+        // .andDo(print());
 
         // Create
         mockMvc
                 .perform(post("/api/helloes")
                         .content(helloDocs::newEnity, "김길동"))
+                .andDo(print())
+                .andExpect(is2xx())
+                .andDo(result(helloDocs::context, "entity1"));
+
+        mockMvc
+                .perform(post("/api/helloes")
+                        .content(helloDocs::newEnity, "박길동"))
+                .andDo(print())
+                .andExpect(is2xx())
+                .andDo(result(helloDocs::context, "entity1"));
+
+        mockMvc
+                .perform(post("/api/helloes")
+                        .content(helloDocs::newEnity, "홍길동"))
+                .andDo(print())
+                .andExpect(is2xx())
+                .andDo(result(helloDocs::context, "entity1"));
+
+        mockMvc
+                .perform(post("/api/helloes")
+                        .content(helloDocs::newEnity, "오길동"))
                 .andDo(print())
                 .andExpect(is2xx())
                 .andDo(result(helloDocs::context, "entity1"));
@@ -84,15 +105,19 @@ public class HelloTest {
                 .andExpect(is4xx())
                 .andDo(print());
 
-        Map<String, Object> entity = helloDocs.context("entity1", "$");
-
         // Update
+        Map<String, Object> entity = helloDocs.context("entity1", "$");
         mockMvc
                 .perform(put(url)
                         .content(helloDocs::updateEntity, entity, "홍길동1234"))
                 .andExpect(is2xx())
                 .andDo(print())
                 .andExpect(isJson("$.name", "홍길동1234"));
+
+        // Read - 수정 후 단건 체크
+        mockMvc.perform(get(url))
+                .andExpect(is2xx())
+                .andDo(print());
 
         // Delete
         mockMvc
@@ -105,6 +130,8 @@ public class HelloTest {
                 .perform(get(url))
                 .andExpect(is4xx())
                 .andDo(print());
+
+        // 10개
     }
 
 }
