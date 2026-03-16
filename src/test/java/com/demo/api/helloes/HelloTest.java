@@ -76,21 +76,21 @@ public class HelloTest {
                         .content(helloDocs::newEnity, "박길동"))
                 .andDo(print())
                 .andExpect(is2xx())
-                .andDo(result(helloDocs::context, "entity1"));
+                .andDo(result(helloDocs::context, "entity2"));
 
         mockMvc
                 .perform(post("/api/helloes")
                         .content(helloDocs::newEnity, "홍길동"))
                 .andDo(print())
                 .andExpect(is2xx())
-                .andDo(result(helloDocs::context, "entity1"));
+                .andDo(result(helloDocs::context, "entity3"));
 
         mockMvc
                 .perform(post("/api/helloes")
                         .content(helloDocs::newEnity, "오길동"))
                 .andDo(print())
                 .andExpect(is2xx())
-                .andDo(result(helloDocs::context, "entity1"));
+                .andDo(result(helloDocs::context, "entity4"));
 
         // Read
         String url = helloDocs.context("entity1", "$._links.self.href");
